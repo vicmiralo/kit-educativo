@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kit Educativo NanoEdgEMG</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .kit-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 1200px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background: #FFC107;
+            color: #1976D2;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .kit-image {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .component {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .component:hover {
+            transform: translateY(-5px);
+        }
+
+        .component-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .component-name {
+            font-weight: bold;
+            color: #1976D2;
+            margin-bottom: 5px;
+        }
+
+        .component-desc {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .features {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .features h2 {
+            color: #1976D2;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+            color: #4CAF50;
+        }
+
+        .target-audience {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .target-audience h2 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .audience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+            border-radius: 15px;
+            color: #333;
+        }
+
+        .cta-section h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .includes-box {
+            background: #E3F2FD;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border-left: 5px solid #2196F3;
+        }
+
+        .includes-box h3 {
+            color: #1976D2;
+            margin-bottom: 15px;
+        }
+
+        .includes-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .includes-list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .includes-list li::before {
+            content: "✓";
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+
+        .visual-mockup {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            position: relative;
+        }
+
+        .box-3d {
+            width: 250px;
+            height: 200px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border: 3px solid #2196F3;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.2),
+                inset 0 2px 10px rgba(33, 150, 243, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
+        }
+
+        .box-label {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #2196F3;
+            margin-bottom: 10px;
+        }
+
+        .box-subtitle {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .floating-components {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .float-item {
+            position: absolute;
+            font-size: 2em;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .float-item:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .float-item:nth-child(2) { top: 20%; right: 15%; animation-delay: 0.5s; }
+        .float-item:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 1s; }
+        .float-item:nth-child(4) { bottom: 15%; right: 10%; animation-delay: 1.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="kit-container">
+        <div class="header">
+            <h1>🎓 Kit Educativo NanoEdgEMG</h1>
+            <p>Sistema completo de reconocimiento de gestos mediante EMG e IA embebida</p>
+            <div class="price-badge">100-150€</div>
+        </div>
+
+        <div class="content">
+            <div class="kit-image">
+                <div class="visual-mockup">
+                    <div class="box-3d">
+                        <div class="box-label">NanoEdgEMG Kit</div>
+                        <div class="box-subtitle">Todo incluido para empezar</div>
+                        <div style="margin-top: 15px; font-size: 3em;">📦</div>
+                    </div>
+                    <div class="floating-components">
+                        <div class="float-item">🔌</div>
+                        <div class="float-item">💻</div>
+                        <div class="float-item">⚡</div>
+                        <div class="float-item">🤖</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="color: #1976D2; text-align: center; margin-bottom: 30px;">Componentes del Kit</h2>
+            <div class="components-grid">
+                <div class="component">
+                    <div class="component-icon">🖥️</div>
+                    <div class="component-name">STM32 Nucleo-L476RG</div>
+                    <div class="component-desc">Microcontrolador con IA embebida</div>
+                </div>
+                <div class="component">
+                    <div class="component-icon">📊</div>
+                    <div class="component-name">Sensor EMG AD8232</div>
+                    <div class="component-desc">Captación de señales musculares</div>
+                </div>
+                <div class="component">
+                    <div class="component-icon">⚙️</div>
+                    <div class="component-name">Servomotor SG90</div>
+                    <div class="component-desc">Actuador para demostración</div>
+                </div>
+                <div class="component">
+                    <div class="component-icon">🔗</div>
+                    <div class="component-name">Electrodos + Banda</div>
+                    <div class="component-desc">Sistema de captación EMG</div>
+                </div>
+                <div class="component">
+                    <div class="component-icon">🔌</div>
+                    <div class="component-name">Cables y Protoboard</div>
+                    <div class="component-desc">Material de montaje completo</div>
+                </div>
+                <div class="component">
+                    <div class="component-icon">📚</div>
+                    <div class="component-name">Documentación</div>
+                    <div class="component-desc">Guías paso a paso + código</div>
+                </div>
+            </div>
+
+            <div class="includes-box">
+                <h3>✨ El kit incluye:</h3>
+                <ul class="includes-list">
+                    <li>Hardware completo pre-testeado</li>
+                    <li>Firmware base programado</li>
+                    <li>Modelo IA entrenado</li>
+                    <li>Guía de montaje ilustrada</li>
+                    <li>Tutoriales en vídeo</li>
+                    <li>Código fuente completo</li>
+                    <li>Dataset de ejemplo</li>
+                    <li>Acceso a comunidad online</li>
+                    <li>Proyectos de ampliación</li>
+                    <li>Soporte técnico 3 meses</li>
+                </ul>
+            </div>
+
+            <div class="features">
+                <h2>🎯 Características Clave</h2>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">✅</div>
+                        <div>Plug & Play - Listo en 30 minutos</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✅</div>
+                        <div>Sin soldadura - Montaje con conectores</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✅</div>
+                        <div>Software gratuito (NanoEdge AI Studio)</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✅</div>
+                        <div>Compatible con STM32CubeIDE</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✅</div>
+                        <div>Expandible y personalizable</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✅</div>
+                        <div>Ideal para aprendizaje práctico</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="target-audience">
+                <h2>👥 Público Objetivo</h2>
+                <p>Este kit es perfecto para:</p>
+                <div class="audience-tags">
+                    <div class="tag">🎓 Universidades e Instituciones Educativas</div>
+                    <div class="tag">🔬 Laboratorios de Investigación</div>
+                    <div class="tag">👨‍🎓 Estudiantes de Ingeniería</div>
+                    <div class="tag">💡 Makers y Entusiastas</div>
+                    <div class="tag">🏥 Centros de Rehabilitación</div>
+                    <div class="tag">🤖 Clubs de Robótica</div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h3>🚀 Democratizando la Tecnología Biomédica</h3>
+                <p style="font-size: 1.1em; margin-top: 10px;">
+                    Acceso a tecnología de IA embebida y reconocimiento EMG<br>
+                    a un precio asequible para educación e investigación
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
